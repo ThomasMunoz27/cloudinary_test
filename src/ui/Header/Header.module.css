@@ -1,0 +1,14 @@
+.header{
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+    box-shadow: 3px 3px 5px 6px #ccc
+}
+
+.addImageButton{
+    background-color: #0D9AFF;
+    border: none;
+    border-radius: .4rem;
+    padding: 8px;
+    font-weight: bold;
+}
