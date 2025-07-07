@@ -1,0 +1,32 @@
+import interceptorApiClient from "../Interceptors/axios.interceptor"
+import { IImage } from "../types/IImage"
+
+
+export const getAllImages = async (): Promise<IImage[]> => {
+    const response = await interceptorApiClient.get("/images")
+    return response.data
+}
+
+export const getImageById = async (idImage: number): Promise<IImage> => {
+    const response = await interceptorApiClient.get(`/images/${idImage}`)
+    return response.data
+}
+
+// export const postImageCloudinary = async () => {
+
+// }
+
+
+export const getAllImagesPaged = async (page: number, size: number, categoryId?: number) => {
+    try{
+        if(categoryId){
+            const response = await interceptorApiClient.get(`/images/paged?page=${page}&size=${size}&categoryId=${categoryId}`)
+            return response.data
+        }else{
+            const response = await interceptorApiClient.get(`/images/paged?page=${page}&size=${size}`)
+            return response.data
+        }
+    }catch (error){
+        console.error(`Error en getAllImagesPaged`, error)
+    }
+}

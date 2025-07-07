@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router"
-import { MainScreen } from "../screens/MainScreen/MainScreen"
+import { MainScreen } from "../components/screens/MainScreen/MainScreen"
 
 export const AppRoutes = () => {
   return (

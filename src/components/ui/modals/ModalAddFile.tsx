@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { uploadImage } from "../../cruds/crudCloudinary"
+import { uploadImage } from "../../../cruds/crudCloudinary"
 import styles from "./ModalAddFile.module.css"
-import { useStoreModal } from "../../store/useStoreModal"
+import { useStoreModal } from "../../../store/useStoreModal"
 
 export const ModalAddFile = () => {
   
