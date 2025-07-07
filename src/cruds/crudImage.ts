@@ -12,9 +12,14 @@ export const getImageById = async (idImage: number): Promise<IImage> => {
     return response.data
 }
 
-// export const postImageCloudinary = async () => {
-
-// }
+export const postImageCloudinary = async (formData: FormData) => {
+    const response = await interceptorApiClient.post(`/images/upload`, formData,  {
+        headers:{
+            "Content-Type": "multipart/form-data"
+        },
+    })
+    return response.data
+}
 
 
 export const getAllImagesPaged = async (page: number, size: number, categoryId?: number) => {

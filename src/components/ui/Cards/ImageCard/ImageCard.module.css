@@ -1,0 +1,28 @@
+
+.cardImage{
+    max-width: fit-content;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 8px;
+    gap: 8px;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: scale(1);
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.cardImage:hover{
+    transform: scale(1.03);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.showImage{
+    max-width: 230px;
+    max-height: 345px;
+    border-radius: 0.4rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    
+}

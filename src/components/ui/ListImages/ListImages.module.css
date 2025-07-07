@@ -1,0 +1,5 @@
+.listImages{
+    border: solid;
+    display: flex;
+    padding: 16px;
+}

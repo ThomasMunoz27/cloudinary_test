@@ -1,0 +1,67 @@
+.modalContainer{
+    border: solid;
+
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 20px;
+    align-items: center;
+    justify-content: center;
+    height: 280px;
+    width: 380px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 10px;
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.containerImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image{
+    max-width: 250px;
+    max-height: 345px;
+}
+
+
+.inputForUser{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: .4rem;
+    border: solid 0.01px;
+    height: 30px;
+}
+
+.textAreaForUser{
+    min-width: 100%;
+    max-width: 315px;
+    min-height: 40px;
+    max-height: 200px;
+    padding: 10px;
+    border: 1px solid;
+}
+
+.containerButtons{
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.containerButtons button{
+    width: 100px;
+}
