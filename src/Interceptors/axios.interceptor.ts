@@ -23,16 +23,23 @@ interceptorApiClient.interceptors.response.use(
         //toma el mensaje del servidor
         const serverMessage = (error.response?.data as any)?.message;
 
-
+        if (status === 413) {
+            Swal.fire({
+                icon: "error",
+                title: "Archivo demasiado grande",
+                text: serverMessage || "La imagen excede el tamaño permitido.",
+            });
+        }
         //Respuesta de error 500
         if(status === 500 && (!serverMessage || serverMessage.trim() === "")){
             Swal.fire({
                 icon: "error",
                 title: "Error inesperado",
-                text: serverMessage,
+                text: `${serverMessage}`,
                 confirmButtonColor: "#d33",
        });
-        }
+       
+    }
 
     }
 )

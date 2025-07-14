@@ -3,6 +3,9 @@ import styles from "./ModalAddFile.module.css"
 import { useStoreModal } from "../../../../store/useStoreModal"
 import { postImageCloudinary } from "../../../../cruds/crudImage"
 import { ModalSelectCategories } from "../modalSelectCategories/ModalSelectCategories"
+import { useStoreCategory } from "../../../../store/useStoreCategory"
+import { swalError } from "../../../../utils/swalError"
+import { swalSucces } from "../../../../utils/swalSucces"
 
 export const ModalAddFile = () => {
   
@@ -17,12 +20,29 @@ export const ModalAddFile = () => {
   })
 
   const {closeModalAddFile, openModalSelectCategories, modalSelectCategories} = useStoreModal()
+  const {categoriesIdSelected} = useStoreCategory()
 
+  const MAX_FILE_SIZE = 10 * 1024 * 1024 
+  const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
   const handleChange = (e : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (e.target.type === "file") {
+
 		const file = (e.target as HTMLInputElement).files?.[0];
 		if (file) {
+
+      //valida el tamaño de la imagen
+      if(file.size > MAX_FILE_SIZE){
+        swalError("Archivo demasiado grande", "El tamaño máximo permitido es de 10MB")
+        e.target.value = ""
+        return
+      }
+
+      //valida tipo de archivo
+      if (!ALLOWED_TYPES.includes(file.type)) {
+        swalError("Tipo de archivo no permitido", "Solo se permiten imagenes JPG, PNG o WEBP")
+        return;
+      }
 			setSelectedFile(file);
 			const fileReader = new FileReader();
 			fileReader.onload = () => {
@@ -40,10 +60,17 @@ export const ModalAddFile = () => {
 
   const handleSumbit = async (e: React.FormEvent) => {
     e.preventDefault()
+    console.log("enviando formulario")
     
     if(!selectedFile){
-      console.log("no se seleccionó un archivo")
+      swalError("No se seleccionó un archivo", "Seleccione una imagen para subir")
+      console.log("No se seleccionó un archivo")
       return;
+    }
+    if(categoriesIdSelected.length === 0){
+      swalError("No se seleccionaron categorias", "Seleccione por lo menos una categoria para la imagen.")
+      console.log("No se seleccionaron categorias")
+      return
     }
 
     const formData = new FormData();
@@ -51,12 +78,18 @@ export const ModalAddFile = () => {
     formData.append("name", formValues.name)
     formData.append("description", formValues.description)
     formData.append("userId", formValues.userId.toString())
+    categoriesIdSelected.forEach((idCategory) => {
+      formData.append("categoryId", idCategory.toString())
+    })
 
 
     try{
         await postImageCloudinary(formData)
     }catch (err){
       console.log("error en el formulario")
+    }finally{
+      closeModalAddFile()
+      swalSucces("Imagen subida", "Imagen compartida con exito!")
     }
   }
 
@@ -73,7 +106,10 @@ export const ModalAddFile = () => {
           <div className={styles.containerImage}>
             {preview && <img className={styles.image} src={preview} alt="Vista previa"/>}
 
-          <input type="file" onChange={handleChange} name="" id="" />
+          <label htmlFor="fileInput" className={styles.customUploadButton}>
+	        📁 Subir archivo
+          </label>
+          <input type="file" className={styles.hiddenInput} onChange={handleChange} name="" id="fileInput" />
 
           </div>
 

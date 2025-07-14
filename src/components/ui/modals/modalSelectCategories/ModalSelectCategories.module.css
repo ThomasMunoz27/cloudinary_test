@@ -1,5 +1,5 @@
 .principalContainer{
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 255, 255);
     position: fixed;
     top:50%;
     left: 50%;
@@ -7,5 +7,69 @@
     box-shadow: 5px 5px 15px;
     display: flex;
     width: 500px;
-    height: 100px;
+    height: 350px;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categoriesSelectedContainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 8px;
+    gap: 16px;
+    margin: 10px;
+}
+
+.categoriesToSelect{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 8px;
+    gap: 16px;
+    margin: 10px;
+}
+
+.categoryLabel{
+    padding: 8px 16px;
+	border-radius: 20px;
+	background-color: #f0f0f0;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: #333;
+	user-select: none;
+}
+.categoryLabel:hover {
+	transform: scale(1.05);
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.notSelected:hover{
+    background-color: #dbdbdb;
+}
+
+.selected {
+	background-color: #089cff;
+	color: #fff;
+	font-weight: bold;
+	transform: scale(1.05);
+	box-shadow: 0 0 8px rgba(0, 115, 177, 0.4);
+}
+
+
+
+.containerButtons{
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.containerButtons button{
+    width: 100p x;
 }
