@@ -12,8 +12,8 @@ export const ListImages:FC<IListImages> = ({images}) => {
 
   return (
     <>
-        <h2>IMAGENES</h2>
         <div>
+          <h2>IMAGENES</h2>
         </div>
         <div className={styles.listImages}>
             {images.map(image => (

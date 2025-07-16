@@ -1,6 +1,17 @@
 .listImages{
     border: solid;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
     padding: 16px;
     background-color: #fffbc9;
+    align-items: center;
+}
+
+
+@media (max-width: 870px){
+    .listImages{
+        grid-template-columns: repeat(3, 1fr);
+
+    }
 }

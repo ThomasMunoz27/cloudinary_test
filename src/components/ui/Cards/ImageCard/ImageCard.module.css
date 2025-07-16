@@ -1,6 +1,6 @@
 
 .cardImage{
-    max-width: fit-content;
+    width: 100%;
     max-height: fit-content;
     display: flex;
     flex-direction: column;
@@ -20,9 +20,17 @@
 }
 
 .showImage{
+    width: 100%;
     max-width: 230px;
     max-height: 345px;
     border-radius: 0.4rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    
+    object-fit: cover;
+}
+
+@media (min-width: 1145px){
+    .showImage{
+        max-width: 460px;
+        max-height: 690px;
+    }
 }
