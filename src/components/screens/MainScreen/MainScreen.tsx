@@ -5,10 +5,12 @@ import { ModalAddFile } from '../../ui/modals/modalAddFile/ModalAddFile'
 import { IImage } from '../../../types/IImage'
 import { getAllImages } from '../../../cruds/crudImage'
 import { ListImages } from '../../ui/ListImages/ListImages'
+import { ModalLoginRegister } from '../../ui/modals/ModalLoginRegister/ModalLoginRegister'
+import styles from "./MainScreen.module.css"
 
 export const MainScreen = () => {
 
-    const {modalAddFile} = useStoreModal()
+    const {modalAddFile, modalLoginRegister} = useStoreModal()
 
     const [images, setImages]= useState<IImage[]>([])
 
@@ -26,8 +28,9 @@ export const MainScreen = () => {
         <Header></Header>
 
         <ListImages images={images}></ListImages>
-        {/* aqui va a ir un mapeo de las imagenes de cloudinary <imageCard/> */}
-        {modalAddFile && <ModalAddFile></ModalAddFile>}
+
+        {modalAddFile && <div className={styles.modalBackdrop}><ModalAddFile></ModalAddFile></div>}
+        {modalLoginRegister && <div className={styles.modalBackdrop}><ModalLoginRegister></ModalLoginRegister></div>}
     </>
 )
 }

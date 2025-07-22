@@ -1,36 +1,52 @@
-
-.cardImage{
-    width: 100%;
-    max-height: fit-content;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 8px;
-    gap: 8px;
-
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    transform: scale(1);
+.cardImage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 12px;
+	gap: 10px;
 	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+	cursor: pointer;
 	overflow: hidden;
+
+    height: fit-content;
+
+    background: rgba(255, 255, 255, 0.6);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.cardImage:hover{
-    transform: scale(1.03);
-	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+.cardImage:hover {
+	transform: scale(1.02);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-.showImage{
-    width: 100%;
-    max-width: 230px;
-    max-height: 345px;
-    border-radius: 0.4rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    object-fit: cover;
+.showImage {
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+	max-height: 320px;
+	border-radius: 8px;
+	object-fit: cover;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	transition: filter 0.2s ease-in-out;
 }
 
-@media (min-width: 1145px){
-    .showImage{
-        max-width: 460px;
-        max-height: 690px;
-    }
+.cardImage:hover .showImage {
+	filter: brightness(0.95);
+}
+
+.cardImage p {
+	font-size: 1rem;
+	font-weight: 500;
+	color: #333;
+	margin: 0;
+	padding: 0 8px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
 }

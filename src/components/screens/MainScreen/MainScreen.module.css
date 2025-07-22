@@ -1,0 +1,15 @@
+.modalBackdrop{
+    position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.4); /* fondo negro semitransparente */
+	z-index: 999; /* asegurate de que esté detrás del modal */
+	backdrop-filter: blur(2px); /* desenfoque sutil opcional */
+}
+
+body{
+    background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
+	min-height: 100vh;
+}

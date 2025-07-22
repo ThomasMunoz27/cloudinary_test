@@ -11,6 +11,11 @@ interface IStoreModal {
     openModalSelectCategories: () => void
     closeModalSelectCategories: () => void
 
+
+    modalLoginRegister: boolean
+
+    openModalLoginRegister: () => void
+    closeModalLoginRegister: () => void
 }
 
 export const useStoreModal = create<IStoreModal>((set) => ({
@@ -25,6 +30,11 @@ export const useStoreModal = create<IStoreModal>((set) => ({
     modalSelectCategories: false,
 
     openModalSelectCategories: () => set({modalSelectCategories:true}),
-    closeModalSelectCategories: () => set({modalSelectCategories:false})
+    closeModalSelectCategories: () => set({modalSelectCategories:false}),
+
+    modalLoginRegister: false,
+
+    openModalLoginRegister: () => set({modalLoginRegister:true}),
+    closeModalLoginRegister:() => set({modalLoginRegister: false}),
 })
 )

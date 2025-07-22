@@ -1,17 +1,25 @@
-.listImages{
-    border: solid;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    padding: 16px;
-    background-color: #fffbc9;
-    align-items: center;
+.listImages {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 24px;
+	padding: 24px;
+	background-color: none;
+	border-radius: 12px;
+	transition: background-color 0.3s ease;
+}
+
+.title {
+	text-align: center;
+	font-size: 2rem;
+	font-weight: 600;
+	margin-top: 32px;
+	color: #333;
 }
 
 
-@media (max-width: 870px){
-    .listImages{
-        grid-template-columns: repeat(3, 1fr);
-
-    }
+@media (max-width: 768px) {
+	.listImages {
+		padding: 16px;
+		gap: 16px;
+	}
 }

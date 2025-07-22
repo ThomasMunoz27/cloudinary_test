@@ -20,10 +20,16 @@ export const ModalAddFile = () => {
   })
 
   const {closeModalAddFile, openModalSelectCategories, modalSelectCategories} = useStoreModal()
-  const {categoriesIdSelected} = useStoreCategory()
+  const {categoriesIdSelected, setCaregoriesIdSelected} = useStoreCategory()
 
   const MAX_FILE_SIZE = 10 * 1024 * 1024 
   const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
+  const handleCloseModal= () => {
+    setCaregoriesIdSelected([])
+    closeModalAddFile()
+  }
+
 
   const handleChange = (e : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (e.target.type === "file") {
@@ -97,10 +103,9 @@ export const ModalAddFile = () => {
     <>
     <div className={styles.modalContainer}>
 
-        <div>Soy el modalAddFile</div>
 
         {/*si se subió un archivo no muestra instrucción*/}
-        {!preview && <p>Suba un archivo</p>}
+        {!preview && <h4>Subir un archivo</h4>}
         <form className={styles.formContainer} action="" onSubmit={handleSumbit}>
 
           <div className={styles.containerImage}>
@@ -117,11 +122,11 @@ export const ModalAddFile = () => {
 
           <textarea className={styles.textAreaForUser} name="description" id="" placeholder="Descripcion para la imagen" value={formValues.description} onChange={handleChange}></textarea>
 
-          <button type="button" onClick={()=> openModalSelectCategories()}>Seleccione categorias</button>
+          <button className={styles.selectCategoryButton} type="button" onClick={()=> openModalSelectCategories()}>Seleccione categorias</button>
 
           <div className={styles.containerButtons}>
 
-            <button onClick={closeModalAddFile}>Cancelar</button>
+            <button onClick={handleCloseModal}>Cancelar</button>
             <button type="submit">Aceptar</button>
 
           </div>
