@@ -9,6 +9,7 @@ export const login = async (loginRequest: ILoginRequest) => {
     const response = await interceptorApiClient.post(`/auth/login`, loginRequest)
     const token = response.data.token
     localStorage.setItem("auth_token", token)
+    swalSucces("Sesion iniciada")
     return response
 }
 

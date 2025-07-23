@@ -11,6 +11,9 @@ export const RegisterForm = () => {
 
     const {setStatusLoginRegister} = useStoreLoginRegister()
 
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+
     const[formValues, setFormValues] = useState({
         username: "",
         email: "",
@@ -45,6 +48,7 @@ export const RegisterForm = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        setIsSubmitting(true)
         try{
             //validacion de yup
             await formRegisterSchema.validate(formValues, {abortEarly: false})
@@ -76,6 +80,8 @@ export const RegisterForm = () => {
                 error.general = error.message
             }
             setFormErrors(errors)        
+        }finally{
+            setIsSubmitting(false)
         }
 
 
@@ -108,7 +114,17 @@ export const RegisterForm = () => {
 
                 <div className={styles.containerButtons}>
                     <button onClick={handleClose}>Cancelar</button>
-                    <button type="submit">Aceptar</button>
+                    <button type="submit" disabled={isSubmitting} className={isSubmitting ? styles.loadingButton : ""}>
+                        {isSubmitting 
+                        ? (
+                            <>
+                                <span className={styles.spinner}></span>
+                            
+                            </>
+
+                        )
+                        : ("Aceptar")}
+                    </button>
                 </div>
             </form>
         </div>

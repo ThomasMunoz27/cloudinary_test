@@ -10,6 +10,6 @@ export interface IImage {
     likes: number,
     dislike: number,
     dateUpload: Date,
-    user: IUser,
+    userId: IUser,
     categories: ICategory[]
 }

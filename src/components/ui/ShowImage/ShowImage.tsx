@@ -5,6 +5,8 @@ export const ShowImage = () => {
 
     const {image} = useStoreImages()
 
+    console.log(image)
+
   return (
     <>
 
@@ -27,6 +29,13 @@ export const ShowImage = () => {
                             
                         </p>
                     
+                </div>
+
+                <div className={styles.imageDescription}>
+                    <p>{image?.description}</p>
+                </div>
+                <div className={styles.authorSeccion}>
+                    <p>Imagen subida por: {image?.userId.username}</p>
                 </div>
             </div>
         </div>
