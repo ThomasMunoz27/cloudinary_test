@@ -88,14 +88,17 @@ export const ModalAddFile = () => {
       formData.append("categoryId", idCategory.toString())
     })
 
+    
 
     try{
         await postImageCloudinary(formData)
+        swalSucces("Imagen subida", "Imagen compartida con exito!")
     }catch (err){
       console.log("error en el formulario")
+      swalError("Error al subir la imagen")
     }finally{
       closeModalAddFile()
-      swalSucces("Imagen subida", "Imagen compartida con exito!")
+      
     }
   }
 
