@@ -44,6 +44,9 @@ interceptorApiClient.interceptors.response.use(
         //toma el mensaje del servidor
         const serverMessage = (error.response?.data as any)?.message;
 
+        if(status === 400){
+            swalError("Credenciales inválidas")
+        }
         if(status === 401 || status === 403){
             localStorage.clear(); // Limpia si falla  del local
             swalError("Sesion expirada", "Porfavor vuelve a iniciar sesion")

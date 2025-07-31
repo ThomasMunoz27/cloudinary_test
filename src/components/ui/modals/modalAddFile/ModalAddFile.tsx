@@ -11,6 +11,8 @@ export const ModalAddFile = () => {
   
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const [formValues, setFormValues] = useState({
     name: "",
     description: "",
@@ -66,6 +68,8 @@ export const ModalAddFile = () => {
 
   const handleSumbit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
+
     console.log("enviando formulario")
     
     if(!selectedFile){
@@ -97,6 +101,7 @@ export const ModalAddFile = () => {
       console.log("error en el formulario")
       swalError("Error al subir la imagen")
     }finally{
+      setIsSubmitting(false)
       closeModalAddFile()
       
     }
@@ -130,7 +135,17 @@ export const ModalAddFile = () => {
           <div className={styles.containerButtons}>
 
             <button onClick={handleCloseModal}>Cancelar</button>
-            <button type="submit">Aceptar</button>
+            <button type="submit" disabled={isSubmitting} className={isSubmitting ? styles.loadingButton : ""}>
+                        {isSubmitting 
+                        ? (
+                            <>
+                                <span className={styles.spinner}></span>
+                            
+                            </>
+
+                        )
+                        : ("Aceptar")}
+                    </button>
 
           </div>
         </form>

@@ -6,4 +6,3 @@ export const reactToImage = async (idImage: number, reactionType: IReactionType)
     return response.data
 
 }
-//eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzUzODEwMTQ2LCJleHAiOjE3NTM4OTY1NDZ9.eNHPlvb5RA-8UZPpAePKkFTeBvuvcX7XWkU_mKF2cgQ

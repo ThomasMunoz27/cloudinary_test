@@ -1,20 +1,40 @@
+import { useEffect, useState } from "react"
 import { reactToImage } from "../../../cruds/crudReaction"
 import { useStoreImages } from "../../../store/useStoreImages"
 import { IReactionType } from "../../../types/Enums/IReactionType"
 import styles from "./ShowImage.module.css"
+import { IReactionDTOResponse } from "../../../types/IReactionDTOResponse"
+import { swalError } from "../../../utils/swalError"
 
 export const ShowImage = () => {
 
     const {image} = useStoreImages()
 
-    console.log(image)
+    const [likes, setLikes] = useState(0)
+    const [dislikes, setDislikes] = useState(0)
+    const [likeClicked, setLikeClicked] = useState(false)
+    const [dislikeClicked, setDislikeClicked] = useState(false)
+
+    const [userReaction, setUserReaction] = useState<IReactionType | null>(null)
+
 
     const handleLike = async () => {
         
         const idImage = image?.id
         if(idImage){
-            await reactToImage(image.id, IReactionType.LIKE)
 
+            try{
+                const reaction:IReactionDTOResponse = await reactToImage(idImage, IReactionType.LIKE)
+                setUserReaction(reaction.reactionType)
+                setLikes(reaction.likes)
+                setDislikes(reaction.dislikes)
+                setLikeClicked(true)
+                setTimeout(() => setLikeClicked(false), 300);
+            }catch (e){
+                swalError("Error al dar like")
+                console.error(e);
+                
+            }
         }
     }
 
@@ -22,10 +42,34 @@ export const ShowImage = () => {
         
         const idImage = image?.id
         if(idImage){
-            await reactToImage(image.id, IReactionType.DISLIKE)
-
+            try{
+                const reaction:IReactionDTOResponse = await reactToImage(idImage, IReactionType.DISLIKE)
+                setUserReaction(reaction.reactionType)
+                setLikes(reaction.likes)
+                setDislikes(reaction.dislikes)
+                setDislikeClicked(true)
+                setTimeout(() => setDislikeClicked(false), 300);
+            }catch (e){
+                swalError("Error al dar dislike")
+                console.error(e);
+                
+            }
         }
     }
+
+    useEffect(() => {
+
+        if (!image) return;
+
+        const fetchInitialData = async () => {
+            setLikes(image.likes);
+            setDislikes(image.dislike);
+
+            
+        };
+
+        fetchInitialData();
+    }, [image])
 
   return (
     <>
@@ -38,14 +82,16 @@ export const ShowImage = () => {
                 <img className={styles.showedImage} src={image?.link} alt={image?.name} />
                 <div className={styles.reactionsContainer}>
                     
-                        <p>
-                            <img src="public\thumb_up.svg" alt="like" onClick={handleLike} className={styles.reactionIcon}/> 
-                            <span>{image?.likes}</span>
+                        <p onClick={handleLike} className={styles.reactionClicker}>
+                            <img src="public\thumb_up.svg" alt="like" 
+                            className={`${styles.reactionIcon} ${likeClicked ? styles.clicked : ""} ${userReaction === IReactionType.LIKE ? styles.activeLike : ""}`}/> 
+                            <span>{likes}</span>
                             
                         </p>
-                        <p>
-                            <img src="public\thumb_down.svg" alt="dislike" onClick={handleDislike} className={styles.reactionIcon}/> 
-                            <span>{image?.dislike}</span>
+                        <p onClick={handleDislike} className={styles.reactionClicker}>
+                            <img src="public\thumb_down.svg" alt="dislike"  
+                            className={`${styles.reactionIcon} ${dislikeClicked ? styles.clicked : ""} ${userReaction === IReactionType.DISLIKE ? styles.activeDislike : ""}`}/> 
+                            <span>{dislikes}</span>
                             
                         </p>
                     
