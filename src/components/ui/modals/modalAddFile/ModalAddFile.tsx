@@ -6,6 +6,7 @@ import { ModalSelectCategories } from "../modalSelectCategories/ModalSelectCateg
 import { useStoreCategory } from "../../../../store/useStoreCategory"
 import { swalError } from "../../../../utils/swalError"
 import { swalSucces } from "../../../../utils/swalSucces"
+import { useStoreImages } from "../../../../store/useStoreImages"
 
 export const ModalAddFile = () => {
   
@@ -23,6 +24,7 @@ export const ModalAddFile = () => {
 
   const {closeModalAddFile, openModalSelectCategories, modalSelectCategories} = useStoreModal()
   const {categoriesIdSelected, setCaregoriesIdSelected} = useStoreCategory()
+  const {fetchImagesStore} = useStoreImages()
 
   const MAX_FILE_SIZE = 10 * 1024 * 1024 
   const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -102,6 +104,7 @@ export const ModalAddFile = () => {
       swalError("Error al subir la imagen")
     }finally{
       setIsSubmitting(false)
+      fetchImagesStore()
       closeModalAddFile()
       
     }

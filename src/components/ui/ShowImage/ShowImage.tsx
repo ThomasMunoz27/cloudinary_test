@@ -8,7 +8,7 @@ import { swalError } from "../../../utils/swalError"
 
 export const ShowImage = () => {
 
-    const {image} = useStoreImages()
+    const {image, setImage} = useStoreImages()
 
     const [likes, setLikes] = useState(0)
     const [dislikes, setDislikes] = useState(0)
@@ -26,6 +26,14 @@ export const ShowImage = () => {
             try{
                 const reaction:IReactionDTOResponse = await reactToImage(idImage, IReactionType.LIKE)
                 setUserReaction(reaction.reactionType)
+
+                //setear los likes y dislikes en la store en caso de recargar
+                setImage({
+                    ...image,
+                    likes: reaction.likes,
+                    dislike: reaction.dislikes
+                })
+
                 setLikes(reaction.likes)
                 setDislikes(reaction.dislikes)
                 setLikeClicked(true)

@@ -1,23 +1,30 @@
+import { useNavigate } from "react-router"
 import { useStoreModal } from "../../../store/useStoreModal"
+import { ModalAddFile } from "../modals/modalAddFile/ModalAddFile"
+import { ModalLoginRegister } from "../modals/ModalLoginRegister/ModalLoginRegister"
 import styles from "./Header.module.css"
 
 
 export const Header = () => {
     
     const {openModalAddFile, openModalLoginRegister} = useStoreModal()
-    
+    const {modalAddFile, modalLoginRegister} = useStoreModal()
+    const navigate = useNavigate()
 
     const handleClick = () => {
         openModalAddFile()
     }
 
+    const handleNavigate = () =>{
+        navigate("/")
+    }
     
   
     return (
 
         <header className={styles.header}>
             <div className={styles.leftSide}>
-                <h2>Cloudinary Test</h2>
+                <h2 className={styles.logo} onClick={handleNavigate}>Cloudinary Test</h2>
             </div>
 
             <div className={styles.rightSide}>
@@ -27,7 +34,8 @@ export const Header = () => {
 
             </div>
 
-            
+        {modalAddFile && <div className={styles.modalBackdrop}><ModalAddFile></ModalAddFile></div>}
+        {modalLoginRegister && <div className={styles.modalBackdrop}><ModalLoginRegister></ModalLoginRegister></div>}
         </header>
 
   )
