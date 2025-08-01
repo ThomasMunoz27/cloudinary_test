@@ -1,0 +1,55 @@
+.commentContainer {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	background-color: #fff;
+	border-radius: 12px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	padding: 16px;
+	gap: 16px;
+	transition: box-shadow 0.2s ease-in-out;
+	font-family: 'Roboto', sans-serif;
+    margin: 16px;
+}
+
+.perfilSide {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 50px;
+}
+
+.perfilSide img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+	opacity: 0.8;
+}
+
+.perfilSide p {
+	margin-top: 4px;
+	font-size: 0.85rem;
+	color: #333;
+	font-weight: 500;
+}
+
+.contentSide {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.dateComment {
+	font-size: 0.75rem;
+	color: #888;
+	margin-bottom: 4px;
+}
+
+.contentSide p {
+	margin: 0;
+	font-size: 0.95rem;
+	line-height: 1.4;
+	color: #222;
+	white-space: pre-wrap;
+}
