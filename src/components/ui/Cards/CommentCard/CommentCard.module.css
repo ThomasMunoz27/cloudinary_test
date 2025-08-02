@@ -9,7 +9,9 @@
 	gap: 16px;
 	transition: box-shadow 0.2s ease-in-out;
 	font-family: 'Roboto', sans-serif;
-    margin: 16px;
+    margin: 8px;
+    margin-left: 16px;
+    margin-right:16px ;
 }
 
 .perfilSide {

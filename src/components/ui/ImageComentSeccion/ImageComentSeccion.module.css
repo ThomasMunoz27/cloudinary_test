@@ -75,5 +75,4 @@ width: 100%;
 .commentSeccion {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
 }
