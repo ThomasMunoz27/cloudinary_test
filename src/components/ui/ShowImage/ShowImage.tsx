@@ -39,7 +39,7 @@ export const ShowImage = () => {
                 setLikeClicked(true)
                 setTimeout(() => setLikeClicked(false), 300);
             }catch (e){
-                swalError("Error al dar like")
+                swalError("Error al dar like", "Verifique estar logueado")
                 console.error(e);
                 
             }
@@ -58,7 +58,7 @@ export const ShowImage = () => {
                 setDislikeClicked(true)
                 setTimeout(() => setDislikeClicked(false), 300);
             }catch (e){
-                swalError("Error al dar dislike")
+                swalError("Error al dar dislike", "Verifique estar logueado")
                 console.error(e);
                 
             }

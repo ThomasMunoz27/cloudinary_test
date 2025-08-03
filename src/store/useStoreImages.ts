@@ -12,7 +12,7 @@ interface IUseStoreImages {
 
     setImage: (incomingImage:IImage) => void
 
-    fetchImagesStore: (categoryId?: number) => void
+    fetchImagesStore: (page: number, size: number, categoryId?: number) => void
 }
 
 
@@ -31,7 +31,7 @@ export const useStoreImages = create<IUseStoreImages>()(
 
             setImage: (incomingImage) => set({image: incomingImage}),
 
-            fetchImagesStore: async (categoryId) => set({images: await getAllImagesPaged(0, 2, categoryId)})
+            fetchImagesStore: async (page, size, categoryId ) => set({images: await getAllImagesPaged(page, size, categoryId)})
 
 
         }),
