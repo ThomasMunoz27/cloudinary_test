@@ -18,6 +18,10 @@ export const ImageComentSeccion = () => {
         comment: ""
     })
 
+    const fetchComments = async()=> {
+            const fetchedComments = await getAllCommentByImageId(image!.id)
+            setComments(fetchedComments)
+        }
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormValues({...formValues, [e.target.name]: e.target.value})
     }
@@ -33,19 +37,17 @@ export const ImageComentSeccion = () => {
             }
 
             await postCommentInImage(commentPostRequest)
+            swalSucces("Comentario publicado")
         }catch(err){
-            swalError("Error al comentar")
+            swalError("Error al comentar", "Verifique estar logueado")
         }finally{
             setIsSubmitting(false)
-            swalSucces("Comentario publicado")
+            fetchComments()
         }
     }
 
     useEffect(()=>{
-        const fetchComments = async()=> {
-            const fetchedComments = await getAllCommentByImageId(image!.id)
-            setComments(fetchedComments)
-        }
+        console.log("lel")
         fetchComments()
     },[])
   return (

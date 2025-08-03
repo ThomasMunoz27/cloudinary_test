@@ -66,7 +66,7 @@ export const ShowImage = () => {
     }
 
     useEffect(() => {
-
+        console.log("lol")
         if (!image) return;
 
         const fetchInitialData = async () => {

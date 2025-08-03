@@ -10,17 +10,18 @@ export const MainScreen = () => {
 
     const {images, fetchImagesStore}= useStoreImages()
 
+
     //fetch images proovisional
     useEffect (()=>{
       fetchImagesStore()
-      console.log(images)
-    },[images])
+      
+    },[])
 
   return (
     <>
         <Header></Header>
 
-        <ListImages images={images}></ListImages>
+        <ListImages images={images.content}></ListImages>
 
     </>
 )

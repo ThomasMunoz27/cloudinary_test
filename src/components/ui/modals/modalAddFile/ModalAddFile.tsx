@@ -77,11 +77,14 @@ export const ModalAddFile = () => {
     if(!selectedFile){
       swalError("No se seleccionó un archivo", "Seleccione una imagen para subir")
       console.log("No se seleccionó un archivo")
+      setIsSubmitting(false)
       return;
     }
     if(categoriesIdSelected.length === 0){
       swalError("No se seleccionaron categorias", "Seleccione por lo menos una categoria para la imagen.")
       console.log("No se seleccionaron categorias")
+      setIsSubmitting(false)
+
       return
     }
 
@@ -89,7 +92,7 @@ export const ModalAddFile = () => {
     formData.append("file", selectedFile)
     formData.append("name", formValues.name)
     formData.append("description", formValues.description)
-    formData.append("userId", formValues.userId.toString())
+    //formData.append("userId", formValues.userId.toString())
     categoriesIdSelected.forEach((idCategory) => {
       formData.append("categoryId", idCategory.toString())
     })

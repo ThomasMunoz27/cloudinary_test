@@ -26,9 +26,12 @@ export const getAllImagesPaged = async (page: number, size: number, categoryId?:
     try{
         if(categoryId){
             const response = await interceptorApiClient.get(`/images/paged?page=${page}&size=${size}&categoryId=${categoryId}`)
+            console.log(response.data)
             return response.data
         }else{
             const response = await interceptorApiClient.get(`/images/paged?page=${page}&size=${size}`)
+                        console.log(response.data)
+
             return response.data
         }
     }catch (error){

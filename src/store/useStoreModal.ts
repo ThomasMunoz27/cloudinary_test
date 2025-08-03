@@ -16,6 +16,11 @@ interface IStoreModal {
 
     openModalLoginRegister: () => void
     closeModalLoginRegister: () => void
+
+    modalMenuSideBar: boolean,
+
+    openModalMenuSideBar: () => void,
+    closeModalMenuSideBar: () => void
 }
 
 export const useStoreModal = create<IStoreModal>((set) => ({
@@ -36,5 +41,10 @@ export const useStoreModal = create<IStoreModal>((set) => ({
 
     openModalLoginRegister: () => set({modalLoginRegister:true}),
     closeModalLoginRegister:() => set({modalLoginRegister: false}),
+
+    modalMenuSideBar: false,
+
+    openModalMenuSideBar: () => set({modalMenuSideBar:true}),
+    closeModalMenuSideBar: () => set({modalMenuSideBar:false})
 })
 )
