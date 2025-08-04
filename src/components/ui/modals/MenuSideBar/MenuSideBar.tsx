@@ -3,11 +3,13 @@ import { useStoreLoginRegister } from '../../../../store/useStoreLoginRegister'
 import { useStoreModal } from '../../../../store/useStoreModal'
 import { swalSucces } from '../../../../utils/swalSucces'
 import styles from './MenuSideBar.module.css'
+import { useNavigate } from 'react-router'
 
 export const MenuSideBar = () => {
 
     const [visible, setVisible] = useState(false)
 
+    const navigate = useNavigate()
     const {openModalLoginRegister, closeModalMenuSideBar} = useStoreModal()
     const {setStatusLoginRegister} = useStoreLoginRegister()
 
@@ -42,7 +44,7 @@ export const MenuSideBar = () => {
             <div className={styles.optionInMenu} onClick={handleOpenRegister}>
                 <p>Registrar Usuario</p>
             </div>
-            <div className={styles.optionInMenu}>
+            <div className={styles.optionInMenu} onClick={() => navigate("/categories")}>
                 <p>Categorias</p>
             </div>
             <div className={styles.optionInMenu} onClick={closeSession}>

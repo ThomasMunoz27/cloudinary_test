@@ -4,19 +4,20 @@ import { ListImages } from '../../ui/ListImages/ListImages'
 import styles from "./MainScreen.module.css"
 import { useStoreImages } from '../../../store/useStoreImages'
 import { Pagination } from '../../ui/Pagination/Pagination'
+import { useStoreListCategories } from '../../../store/useStoreListCategories'
 
 export const MainScreen = () => {
 
  
 
     const {images, fetchImagesStore}= useStoreImages()
-
+      const {activeCategory} = useStoreListCategories()
 
     //fetch images proovisional
     useEffect (()=>{
-      fetchImagesStore(0, 2)
+      fetchImagesStore(0, 2, activeCategory?.id)
       
-    },[])
+    },[activeCategory])
 
   return (
     <>
