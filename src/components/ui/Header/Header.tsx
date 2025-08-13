@@ -4,6 +4,7 @@ import { ModalAddFile } from "../modals/modalAddFile/ModalAddFile"
 import { ModalLoginRegister } from "../modals/ModalLoginRegister/ModalLoginRegister"
 import styles from "./Header.module.css"
 import { MenuSideBar } from "../modals/MenuSideBar/MenuSideBar"
+import { useStoreListCategories } from "../../../store/useStoreListCategories"
 
 
 export const Header = () => {
@@ -12,12 +13,15 @@ export const Header = () => {
     const {modalAddFile, modalLoginRegister, modalMenuSideBar} = useStoreModal()
     const navigate = useNavigate()
 
+    const {clearActiveCategory} = useStoreListCategories()
+
     const handleClick = () => {
         openModalAddFile()
     }
 
     const handleNavigate = () =>{
         navigate("/")
+        clearActiveCategory()
     }
     
   

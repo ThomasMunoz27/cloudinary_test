@@ -17,7 +17,7 @@ export const ListImages:FC<IListImages> = ({images}) => {
         <div>
             {activeCategory 
             ? (<>
-                <h2 className={styles.title}>Imagenes con categoria {activeCategory.name}</h2>
+                <h2 className={styles.title}>Imagenes con categoria: {activeCategory.name}</h2>
                 <p className={styles.categoryDescription}>{activeCategory.description}</p>
               </>)
             : (<>
@@ -26,9 +26,15 @@ export const ListImages:FC<IListImages> = ({images}) => {
             }
         </div>
         <div className={styles.listImages}>
-            {images.map(image => (
+
+          {images.length > 0 ? (
+            images.map(image => (
                 <ImageCard key={image.id} image={image}></ImageCard>
-            ))}
+            ))
+          ) : (
+            <p>No hay imagenes</p>
+          )}
+            
         </div>
     
     </>

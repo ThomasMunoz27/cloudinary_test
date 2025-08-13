@@ -1,0 +1,17 @@
+.title {
+	text-align: center;
+	margin: 1rem;
+}
+
+.title h2 {
+	font-size: 1.4rem;
+	color: #333;
+}
+
+.listCategories {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	padding: 10px;
+}

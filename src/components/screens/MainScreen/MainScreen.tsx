@@ -13,10 +13,14 @@ export const MainScreen = () => {
     const {images, fetchImagesStore}= useStoreImages()
       const {activeCategory} = useStoreListCategories()
 
+      const triggerFetchImages = async () =>{
+        await fetchImagesStore(0, 2, activeCategory?.id)
+        console.log("Buscando imagenes")
+      }
     //fetch images proovisional
     useEffect (()=>{
-      fetchImagesStore(0, 2, activeCategory?.id)
-      
+      triggerFetchImages()
+
     },[activeCategory])
 
   return (
@@ -25,7 +29,7 @@ export const MainScreen = () => {
 
         <Header></Header>
 
-        <ListImages images={images.content}></ListImages>
+        <ListImages images={images?.content || []}></ListImages>
         <Pagination></Pagination>
     </div>
     </>

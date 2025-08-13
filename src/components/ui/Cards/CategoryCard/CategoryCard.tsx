@@ -13,8 +13,8 @@ export const CategoryCard:FC<ICategoryCard> = ({category}) => {
     const {setActiveCategory} = useStoreListCategories()
     const navigate = useNavigate()
 
-    const handleClickCategory = () => {
-        setActiveCategory(category.id!)
+    const handleClickCategory = async () => {
+        await setActiveCategory(category.id!)
         navigate("/")
     }
 

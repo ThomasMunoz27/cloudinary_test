@@ -2,6 +2,7 @@ import styles from './ListCategories.module.css'
 import { useStoreListCategories } from '../../../store/useStoreListCategories'
 import { CategoryCard } from '../Cards/CategoryCard/CategoryCard'
 import { useEffect } from 'react'
+import { Header } from '../Header/Header'
 
 
 
@@ -14,6 +15,7 @@ export const ListCategories = () => {
     },[])
   return (
     <>
+    <Header></Header>
     <div>
         <div className={styles.title}>
             <h2>Categorías</h2>
