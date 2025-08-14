@@ -5,6 +5,7 @@ import { ILoginRequest } from "../../../../types/ILoginRequest"
 import { login } from "../../../../cruds/crudLoginRegister"
 import { useStoreLoginRegister } from "../../../../store/useStoreLoginRegister"
 import { useStoreModal } from "../../../../store/useStoreModal"
+import { useStoreUser } from "../../../../store/useStoreUser"
 
 
 
@@ -12,6 +13,7 @@ export const LoginForm = () => {
 
     const {setStatusLoginRegister} = useStoreLoginRegister()
     const {closeModalLoginRegister} = useStoreModal()
+    const {setLoguedUser, loguedUser} = useStoreUser()
 
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [formValues, setFormValues] = useState<ILoginRequest>({
@@ -44,6 +46,8 @@ export const LoginForm = () => {
         //put para login
         await login(formValues)
 
+        await setLoguedUser()
+        console.log(loguedUser)
         handleClose()
         closeModalLoginRegister()
       }catch (error: any){

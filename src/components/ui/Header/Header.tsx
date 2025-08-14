@@ -5,12 +5,14 @@ import { ModalLoginRegister } from "../modals/ModalLoginRegister/ModalLoginRegis
 import styles from "./Header.module.css"
 import { MenuSideBar } from "../modals/MenuSideBar/MenuSideBar"
 import { useStoreListCategories } from "../../../store/useStoreListCategories"
+import { useStoreUser } from "../../../store/useStoreUser"
 
 
 export const Header = () => {
     
     const {openModalAddFile, openModalLoginRegister, openModalMenuSideBar, closeModalMenuSideBar} = useStoreModal()
     const {modalAddFile, modalLoginRegister, modalMenuSideBar} = useStoreModal()
+    const {loguedUser} = useStoreUser()
     const navigate = useNavigate()
 
     const {clearActiveCategory} = useStoreListCategories()
@@ -22,6 +24,10 @@ export const Header = () => {
     const handleNavigate = () =>{
         navigate("/")
         clearActiveCategory()
+    }
+
+    const hanldeUserNavigate = () => {
+        navigate("/user/profile")
     }
     
   
@@ -35,7 +41,15 @@ export const Header = () => {
             <div className={styles.rightSide}>
                 <button className={styles.addImageButton} onClick={handleClick}>Añadir Imagen</button>
 
-                <img className={styles.accountIcon} src="/account_circle.svg" alt="" onClick={openModalLoginRegister}/>
+            {/* Si hay un usuario logueado, el boton redirije al Perfil */}
+                {loguedUser 
+                ? (
+                    <img className={styles.accountIcon} src={loguedUser.linkProfileImg ? loguedUser.linkProfileImg : "/account_circle.svg"} alt="" onClick={hanldeUserNavigate} />
+                )
+                : (
+                        <img className={styles.accountIcon} src="/account_circle.svg" alt="" onClick={openModalLoginRegister}/>
+                )
+                }
 
                 <img className={styles.accountIcon} src="/menu.svg" alt="" onClick={openModalMenuSideBar}/>
 
