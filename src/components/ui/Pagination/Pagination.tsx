@@ -1,21 +1,47 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useStoreImages } from '../../../store/useStoreImages'
 import styles from './Pagination.module.css'
 import { useStoreListCategories } from '../../../store/useStoreListCategories'
+import { useStoreUser } from '../../../store/useStoreUser'
+import { IPage } from '../../../types/IPage'
+import { IImage } from '../../../types/IImage'
 
-export const Pagination = () => {
+interface IPagination {
+    whereFrom: string
+}
 
-    const {images, fetchImagesStore} = useStoreImages()
+export const Pagination:FC<IPagination> = ({whereFrom}) => {
+
+    const {images, fetchImagesStore, imagesUser, fetchImagesUserStore} = useStoreImages()
     const {activeCategory} = useStoreListCategories()
+    const {loguedUser, activeUser} = useStoreUser()
 
     const [actualPage, setActualPage] = useState(0)
-
-    //cuando haya filtrado por categoria aca va una copnstante para eso
-    //const actualCategory = unaStore()
+    const [imagesToUse, setImagesToUse] = useState<IPage<IImage>>({
+                        content: [],
+                        totalPages: 0,
+                        totalElements: 0,
+                        size: 10,
+                        number: 0
+                    })
+    
+    
 
 
     const getPagedImages = async () => {
-        await fetchImagesStore(actualPage, 2, activeCategory?.id)
+        console.log("a")
+        if(whereFrom === "Main"){
+            await fetchImagesStore(actualPage, 2, activeCategory?.id)
+            setImagesToUse(images)
+        }else{
+            if(activeUser){
+                await fetchImagesUserStore(activeUser.id, actualPage, 6)
+                setImagesToUse(imagesUser)
+            }else{
+                await fetchImagesUserStore(loguedUser!.id, actualPage, 6)
+                setImagesToUse(imagesUser)
+            }
+        }
     }
 
     useEffect(()=> {
@@ -26,10 +52,10 @@ export const Pagination = () => {
         <div className={styles.pagination}>
             <button disabled={actualPage===0} className={styles.paginationButton} onClick={()=> setActualPage(actualPage - 1)}><img src="/chevron_left.svg" alt="" /></button>
 
-            {Array.from({length: images.totalPages}, (_,i) => i)
+            {Array.from({length: imagesToUse.totalPages}, (_,i) => i)
                 .filter((page) =>
                     page === 0 ||
-                    page === images.totalPages - 1 ||
+                    page === imagesToUse.totalPages - 1 ||
                     Math.abs(page - actualPage) <= 2
                 )
                 .reduce((acc: (number | string)[], page, index, array)=>{
@@ -52,7 +78,7 @@ export const Pagination = () => {
                 )
             }
             
-            <button disabled={actualPage+1===images.totalPages} className={styles.paginationButton} onClick={()=> setActualPage(actualPage + 1)}><img src="/chevron_right.svg" alt="" />
+            <button disabled={actualPage+1===imagesToUse.totalPages} className={styles.paginationButton} onClick={()=> setActualPage(actualPage + 1)}><img src="/chevron_right.svg" alt="" />
             </button>
         </div>
     </>

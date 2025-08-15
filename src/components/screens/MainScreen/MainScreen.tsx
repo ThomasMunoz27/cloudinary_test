@@ -30,7 +30,7 @@ export const MainScreen = () => {
         <Header></Header>
 
         <ListImages images={images?.content || []}></ListImages>
-        <Pagination></Pagination>
+        <Pagination whereFrom='Main'></Pagination>
     </div>
     </>
 )

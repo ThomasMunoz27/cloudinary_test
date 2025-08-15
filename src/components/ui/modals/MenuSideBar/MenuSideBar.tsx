@@ -4,6 +4,7 @@ import { useStoreModal } from '../../../../store/useStoreModal'
 import { swalSucces } from '../../../../utils/swalSucces'
 import styles from './MenuSideBar.module.css'
 import { useNavigate } from 'react-router'
+import { useStoreUser } from '../../../../store/useStoreUser'
 
 export const MenuSideBar = () => {
 
@@ -12,6 +13,7 @@ export const MenuSideBar = () => {
     const navigate = useNavigate()
     const {openModalLoginRegister, closeModalMenuSideBar} = useStoreModal()
     const {setStatusLoginRegister} = useStoreLoginRegister()
+    const {clearLoguedUser} = useStoreUser()
 
     const handleOpenLogin = () =>{
         setStatusLoginRegister("Login")
@@ -32,6 +34,7 @@ export const MenuSideBar = () => {
 
     const closeSession = () => {
         localStorage.clear()
+        clearLoguedUser()
         swalSucces("Sesion cerrada")
     }
 

@@ -1,9 +1,15 @@
+import { ICategory } from "./ICategory";
+
+
 export interface IImageForUserDTO {
+    id: number,
     link: string,
     publicId: string,
     name:  string,
     description: string,
     likes: number,
     dislike: number,
-    dateUploaded: Date
+    dateUpload: Date,
+    categories: ICategory[]
+
 }

@@ -1,5 +1,4 @@
 import { ICategory } from "./ICategory";
-import { IUser } from "./IUser";
 import { IUserForImageDTO } from "./IUserForImageDTO";
 
 export interface IImage {

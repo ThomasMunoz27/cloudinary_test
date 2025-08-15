@@ -1,0 +1,59 @@
+.showUserContainer {
+	display: flex;
+	justify-content: center;
+	padding: 2rem;
+}
+
+.userPresentation {
+	width: 100%;
+	max-width: 800px;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+/* Bloque del perfil */
+.profileHeader {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.photoContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.photoContainer img {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 3px solid #ccc;
+}
+
+.photoContainer h3 {
+	margin-top: 0.8rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+.extraData {
+	display: flex;
+	gap: 2rem;
+	margin-top: 0.5rem;
+	font-size: 1rem;
+	color: #555;
+}
+
+.extraData p {
+	margin: 0;
+	white-space: nowrap;
+}
+
+/* Bloque de imágenes */
+.userImages {
+	width: 100%;
+}

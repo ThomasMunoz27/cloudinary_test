@@ -38,3 +38,4 @@ export const getAllImagesPaged = async (page: number, size: number, categoryId?:
         console.error(`Error en getAllImagesPaged`, error)
     }
 }
+

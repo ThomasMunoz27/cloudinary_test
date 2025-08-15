@@ -17,3 +17,8 @@ export const getUserProfileByToken = async () => {
     const response = await interceptorApiClient.get("users/login/profile")
     return response.data
 }
+
+export const getPagedImagesByUserId = async (userId:number, page: number, size: number) => {
+    const response = await interceptorApiClient.get(`/users/profile/images/${userId}?page=${page}&size=${size}`)
+    return response.data
+}

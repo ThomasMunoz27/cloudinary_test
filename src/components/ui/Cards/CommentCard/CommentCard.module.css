@@ -36,6 +36,11 @@
 	font-weight: 500;
 }
 
+.perfilUsername:hover{
+	cursor: pointer;
+	text-decoration: underline;
+}
+
 .contentSide {
 	flex: 1;
 	display: flex;

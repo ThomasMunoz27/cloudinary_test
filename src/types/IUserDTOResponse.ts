@@ -1,9 +1,8 @@
-import { IImageForUserDTO } from "./IImageForUserDto";
 
 export interface IUserDTOResponse{
+    id: number,
     username: string,
     registerDate: Date,
-    imagesPublished: IImageForUserDTO[],
     publicIdProfileImg: string,
     linkProfileImg: string
 }
