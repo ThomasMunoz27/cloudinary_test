@@ -32,7 +32,7 @@ export const CommentCard:FC<ICommentCard> = ({comment}) => {
                 <p className={styles.perfilUsername} onClick={handleClickUserComment}>{comment.username}</p>
             </div>
             <div className={styles.contentSide}>
-                <span className={styles.dateComment}>Comentado el {formattedDate}</span>
+                <span className={styles.dateComment}>Comentado el: {formattedDate}</span>
                 <p>{comment.content}</p>
             </div>
         </div>
