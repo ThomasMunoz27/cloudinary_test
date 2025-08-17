@@ -17,15 +17,18 @@ export const Header = () => {
 
     const {clearActiveCategory} = useStoreListCategories()
 
+    //funcion para abrir modal de añadir imagen
     const handleClick = () => {
         openModalAddFile()
     }
 
+    //Boton home
     const handleNavigate = () =>{
         navigate("/")
         clearActiveCategory()
     }
 
+    //Va a la pestaña del usuario logueado
     const hanldeUserNavigate = () => {
         navigate("/user/profile")
     }

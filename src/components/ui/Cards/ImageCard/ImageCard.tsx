@@ -13,6 +13,7 @@ export const ImageCard:FC<IImageCard> = ({image}) => {
   const navigate = useNavigate()
   const {setImage} = useStoreImages()
 
+  //funcion para ir a la pagina de la imagen clickeada
   const handleClick = () => {
     setImage(image)
     navigate("/image")

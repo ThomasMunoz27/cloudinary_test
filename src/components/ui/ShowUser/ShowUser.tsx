@@ -27,7 +27,7 @@ export const ShowUser:FC<IShowUser> = ({user}) => {
 	})
 
 
-
+    //busca las imagenes del usuario
     useEffect(() => {
         const fetchUserImages = async () => {
             const pagedImages = await getPagedImagesByUserId(user.id, 0,2)

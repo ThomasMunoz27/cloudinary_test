@@ -29,7 +29,6 @@ export const Pagination:FC<IPagination> = ({whereFrom}) => {
 
 
     const getPagedImages = async () => {
-        console.log("a")
         if(whereFrom === "Main"){
             await fetchImagesStore(actualPage, 2, activeCategory?.id)
             setImagesToUse(images)

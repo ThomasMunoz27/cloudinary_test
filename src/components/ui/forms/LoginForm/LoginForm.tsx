@@ -27,6 +27,7 @@ export const LoginForm = () => {
       setFormValues({...formValues, [e.target.name]: e.target.value})
     }
 
+    //Reinicio de formulario
     const handleClose = () => {
       setFormValues({
         usernameOrEmail: "",

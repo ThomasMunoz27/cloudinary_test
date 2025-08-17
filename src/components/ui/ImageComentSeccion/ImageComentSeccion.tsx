@@ -26,7 +26,7 @@ export const ImageComentSeccion = () => {
         setFormValues({...formValues, [e.target.name]: e.target.value})
     }
 
-
+    //Submit de commentario
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
