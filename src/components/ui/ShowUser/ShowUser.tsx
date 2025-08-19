@@ -42,6 +42,9 @@ export const ShowUser:FC<IShowUser> = ({user}) => {
         <div className={styles.showUserContainer}>
             
             <div className={styles.userPresentation}>
+                <div className={styles.changeProfilePhotoContainer}>
+                    <button className={styles.addImageButton}>Cambiar Foto de Perfil</button>
+                </div>
                 <div className={styles.profileHeader}>
                     <div className={styles.photoContainer}>
                         <img src={user.linkProfileImg ? user.linkProfileImg : "/account_circle.svg"} alt="" />
