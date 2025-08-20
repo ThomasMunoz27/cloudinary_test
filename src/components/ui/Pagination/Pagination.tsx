@@ -45,7 +45,7 @@ export const Pagination:FC<IPagination> = ({whereFrom}) => {
 
     useEffect(()=> {
         getPagedImages()
-    }, [actualPage])
+    }, [actualPage, activeUser, imagesToUse])
   return (
     <>
         <div className={styles.pagination}>

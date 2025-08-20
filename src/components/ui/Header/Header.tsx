@@ -12,7 +12,7 @@ export const Header = () => {
     
     const {openModalAddFile, openModalLoginRegister, openModalMenuSideBar, closeModalMenuSideBar} = useStoreModal()
     const {modalAddFile, modalLoginRegister, modalMenuSideBar} = useStoreModal()
-    const {loguedUser} = useStoreUser()
+    const {loguedUser, clearActiveUser} = useStoreUser()
     const navigate = useNavigate()
 
     const {clearActiveCategory} = useStoreListCategories()
@@ -30,6 +30,7 @@ export const Header = () => {
 
     //Va a la pestaña del usuario logueado
     const hanldeUserNavigate = () => {
+        clearActiveUser()
         navigate("/user/profile")
     }
     

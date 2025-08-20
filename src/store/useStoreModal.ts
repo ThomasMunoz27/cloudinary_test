@@ -21,6 +21,11 @@ interface IStoreModal {
 
     openModalMenuSideBar: () => void,
     closeModalMenuSideBar: () => void
+
+    modalChangePhotoProfile: boolean,
+
+    openModalChangePhotoProfile: () => void,
+    closeModalChangePhotoProfile:  () => void
 }
 
 export const useStoreModal = create<IStoreModal>((set) => ({
@@ -45,6 +50,12 @@ export const useStoreModal = create<IStoreModal>((set) => ({
     modalMenuSideBar: false,
 
     openModalMenuSideBar: () => set({modalMenuSideBar:true}),
-    closeModalMenuSideBar: () => set({modalMenuSideBar:false})
+    closeModalMenuSideBar: () => set({modalMenuSideBar:false}),
+
+    modalChangePhotoProfile: false,
+
+    openModalChangePhotoProfile: () => set({modalChangePhotoProfile: true}),
+    closeModalChangePhotoProfile: () => set({modalChangePhotoProfile: false}),
+
 })
 )

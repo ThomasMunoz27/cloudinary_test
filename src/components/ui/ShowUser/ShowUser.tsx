@@ -1,12 +1,13 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { IUserDTOResponse } from '../../../types/IUserDTOResponse'
 import styles from './ShowUser.module.css'
-import { IPage } from '../../../types/IPage'
-import { getPagedImagesByUserId } from '../../../cruds/crudUser'
+
 import { ListImages } from '../ListImages/ListImages'
-import { IImage } from '../../../types/IImage'
 import { Pagination } from '../Pagination/Pagination'
 import { useStoreImages } from '../../../store/useStoreImages'
+import { useStoreModal } from '../../../store/useStoreModal'
+import { ModalChangePhotoProfile } from '../modals/ModalChangePhotoProfile/ModalChangePhotoProfile'
+import { useStoreUser } from '../../../store/useStoreUser'
 
 
 interface IShowUser {
@@ -16,9 +17,10 @@ interface IShowUser {
 
 export const ShowUser:FC<IShowUser> = ({user}) => {
 
+    const {loguedUser} = useStoreUser()
     const {imagesUser} = useStoreImages()
+    const {modalChangePhotoProfile, openModalChangePhotoProfile} = useStoreModal()
 
-    const [pagedUserImages, setPagedUserImages] = useState<IPage<IImage>>()
 
     const formattedDate = new Date(user.registerDate).toLocaleString('es-AR', {
 		day: '2-digit',
@@ -27,31 +29,26 @@ export const ShowUser:FC<IShowUser> = ({user}) => {
 	})
 
 
-    //busca las imagenes del usuario
-    useEffect(() => {
-        const fetchUserImages = async () => {
-            const pagedImages = await getPagedImagesByUserId(user.id, 0,2)
-            setPagedUserImages(pagedImages)
-        }
-
-        fetchUserImages()
-    }, [])
-
   return (
     <>
         <div className={styles.showUserContainer}>
             
             <div className={styles.userPresentation}>
-                <div className={styles.changeProfilePhotoContainer}>
-                    <button className={styles.addImageButton}>Cambiar Foto de Perfil</button>
-                </div>
                 <div className={styles.profileHeader}>
+                    
+                    {loguedUser!.id === user.id && (
+                        <div className={styles.changeProfilePhotoContainer}>
+                            <button className={styles.addImageButton} onClick={openModalChangePhotoProfile}>Cambiar Foto de Perfil</button>
+                        </div>)
+                    }
+                    
+
                     <div className={styles.photoContainer}>
                         <img src={user.linkProfileImg ? user.linkProfileImg : "/account_circle.svg"} alt="" />
                         <h3>{user.username}</h3>
                     </div>
                     <div className={styles.extraData}>
-                        <p>Imagenes publicadas: {pagedUserImages?.content.length}</p>
+                        <p>Imagenes publicadas: {user.cantImagesPublished}</p>
                         <p>Registrado el: {formattedDate}</p>
                     </div>
 
@@ -63,6 +60,8 @@ export const ShowUser:FC<IShowUser> = ({user}) => {
                 </div>
             </div>
             
+            {modalChangePhotoProfile && <div className={styles.modalBackdrop}> <ModalChangePhotoProfile></ModalChangePhotoProfile></div>}
+
         </div>
     </>
   )

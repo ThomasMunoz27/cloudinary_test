@@ -22,3 +22,12 @@ export const getPagedImagesByUserId = async (userId:number, page: number, size: 
     const response = await interceptorApiClient.get(`/users/profile/images/${userId}?page=${page}&size=${size}`)
     return response.data
 }
+
+export const putPhotoProfileImage = async (formData: FormData) => {
+    const response = await interceptorApiClient.put(`users/profile/photo`, formData,{
+        headers:{
+            "Content-Type": "multipart/form-data"
+        }
+    })
+    return response.data
+}

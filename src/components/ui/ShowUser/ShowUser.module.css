@@ -14,6 +14,7 @@
 
 /* Bloque del perfil */
 .profileHeader {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -59,4 +60,51 @@
 /* Bloque de imágenes */
 .userImages {
 	width: 100%;
+}
+
+.changeProfilePhotoContainer{
+
+	position: relative;
+	top: 8px;
+	left: 250px;
+}
+
+.addImageButton {
+	background-color: #0d9aff;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	padding: 8px 16px;
+	font-weight: bold;
+	font-size: 1rem;
+	cursor: pointer;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.addImageButton:hover {
+	background-color: #007fe0;
+	transform: translateY(-1px);
+}
+
+@media (max-width: 800px){
+	.changeProfilePhotoContainer{
+		left: 140px;
+		
+	}
+	.addImageButton{
+		width: 100px;
+	}
+}
+
+
+.modalBackdrop{
+    position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.4); /* fondo negro semitransparente */
+	z-index: 999; /* asegurate de que esté detrás del modal */
+	backdrop-filter: blur(2px); /* desenfoque sutil opcional */
 }

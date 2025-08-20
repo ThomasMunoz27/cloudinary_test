@@ -5,4 +5,5 @@ export interface IUserDTOResponse{
     registerDate: Date,
     publicIdProfileImg: string,
     linkProfileImg: string
+    cantImagesPublished: number
 }
