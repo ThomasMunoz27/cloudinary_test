@@ -12,7 +12,7 @@ interface IPagination {
 
 export const Pagination:FC<IPagination> = ({whereFrom}) => {
 
-    const {images, fetchImagesStore, imagesUser, fetchImagesUserStore} = useStoreImages()
+    const { fetchImagesStore, fetchImagesUserStore} = useStoreImages()
     const {activeCategory} = useStoreListCategories()
     const {loguedUser, activeUser} = useStoreUser()
 
@@ -30,27 +30,22 @@ export const Pagination:FC<IPagination> = ({whereFrom}) => {
 
     const getPagedImages = async () => {
         if(whereFrom === "Main"){
-            await fetchImagesStore(actualPage, 2, activeCategory?.id)
-            setImagesToUse(images)
-            console.log("a")
-        }else{
-            if(activeUser){
-                await fetchImagesUserStore(activeUser.id, actualPage, 6)
-                setImagesToUse(imagesUser)
-                            console.log("b")
-
-            }else{
-                await fetchImagesUserStore(loguedUser!.id, actualPage, 6)
-                setImagesToUse(imagesUser)
-                            console.log("c")
-
-            }
-        }
+        const data = await fetchImagesStore(actualPage, 2, activeCategory?.id)
+        setImagesToUse(data)
+    } else {
+        const userId = activeUser ? activeUser.id : loguedUser!.id
+        const data = await fetchImagesUserStore(userId, actualPage, 6)
+        setImagesToUse(data)
+    }
     }
 
     useEffect(()=> {
         getPagedImages()
-    }, [actualPage, activeUser])
+    }, [actualPage, activeUser, whereFrom])
+
+    useEffect(()=> {
+        setActualPage(0)
+    },[activeUser, whereFrom])
   return (
     <>
         <div className={styles.pagination}>

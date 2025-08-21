@@ -1,4 +1,6 @@
 import interceptorApiClient from "../Interceptors/axios.interceptor"
+import { IImage } from "../types/IImage";
+import { IPage } from "../types/IPage";
 import { IUser } from "../types/IUser";
 import { IUserDTOResponse } from "../types/IUserDTOResponse";
 
@@ -18,7 +20,7 @@ export const getUserProfileByToken = async () => {
     return response.data
 }
 
-export const getPagedImagesByUserId = async (userId:number, page: number, size: number) => {
+export const getPagedImagesByUserId = async (userId:number, page: number, size: number):Promise<IPage<IImage>> => {
     const response = await interceptorApiClient.get(`/users/profile/images/${userId}?page=${page}&size=${size}`)
     return response.data
 }

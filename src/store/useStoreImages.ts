@@ -15,9 +15,9 @@ interface IUseStoreImages {
 
     setImage: (incomingImage:IImage) => void
 
-    fetchImagesStore: (page: number, size: number, categoryId?: number) => void
+    fetchImagesStore: (page: number, size: number, categoryId?: number) => Promise<IPage<IImage>>
 
-    fetchImagesUserStore: (userId: number, page: number, size: number) => void
+    fetchImagesUserStore: (userId: number, page: number, size: number) => Promise<IPage<IImage>>
 }
 
 
@@ -43,9 +43,17 @@ export const useStoreImages = create<IUseStoreImages>()(
 
             setImage: (incomingImage) => set({image: incomingImage}),
 
-            fetchImagesStore: async (page, size, categoryId ) => set({images: await getAllImagesPaged(page, size, categoryId)}),
+            fetchImagesStore: async (page, size, categoryId) => {
+				const response = await getAllImagesPaged(page, size, categoryId);
+				set({ images: response });
+				return response; // ⚡ devuelve el resultado
+			},
 
-            fetchImagesUserStore: async (userId, page, size) => set({imagesUser: await getPagedImagesByUserId(userId, page, size)})
+            fetchImagesUserStore: async (userId, page, size) => {
+                const response =  await getPagedImagesByUserId(userId, page, size)
+                set({imagesUser: response})
+                return response
+        }
         }),
         {
         name: "image-storage"

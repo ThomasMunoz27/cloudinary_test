@@ -64,7 +64,14 @@ export const ShowUser:FC<IShowUser> = ({user, otherUserId}) => {
                 <div className={styles.userImages}>
 
                     <ListImages images={imagesUser?.content || []}></ListImages>
-                    <Pagination whereFrom=''></Pagination>
+                    {loguedUser!.id === userShowed.id
+                    ? (
+                        <Pagination whereFrom='user'></Pagination>
+
+                    )
+                    : (
+                        <Pagination whereFrom='ownUser'></Pagination>
+                    )}
                 </div>
             </div>
             
