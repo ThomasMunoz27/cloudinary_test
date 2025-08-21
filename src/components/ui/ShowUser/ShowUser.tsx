@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { IUserDTOResponse } from '../../../types/IUserDTOResponse'
 import styles from './ShowUser.module.css'
 
@@ -12,22 +12,30 @@ import { useStoreUser } from '../../../store/useStoreUser'
 
 interface IShowUser {
     user: IUserDTOResponse
+    otherUserId?: number
 }
 
 
-export const ShowUser:FC<IShowUser> = ({user}) => {
+export const ShowUser:FC<IShowUser> = ({user, otherUserId}) => {
 
-    const {loguedUser} = useStoreUser()
+    const {loguedUser, setActiveUser, activeUser} = useStoreUser()
     const {imagesUser} = useStoreImages()
     const {modalChangePhotoProfile, openModalChangePhotoProfile} = useStoreModal()
 
+    const userShowed = activeUser ?? user
 
-    const formattedDate = new Date(user.registerDate).toLocaleString('es-AR', {
+    const formattedDate = new Date(userShowed.registerDate).toLocaleString('es-AR', {
 		day: '2-digit',
 		month: '2-digit',
 		year: 'numeric',
 	})
 
+    useEffect(() => {
+        if(otherUserId){
+            setActiveUser(otherUserId)
+            
+        }
+    },[otherUserId])
 
   return (
     <>
@@ -36,7 +44,7 @@ export const ShowUser:FC<IShowUser> = ({user}) => {
             <div className={styles.userPresentation}>
                 <div className={styles.profileHeader}>
                     
-                    {loguedUser!.id === user.id && (
+                    {loguedUser!.id === userShowed.id && (
                         <div className={styles.changeProfilePhotoContainer}>
                             <button className={styles.addImageButton} onClick={openModalChangePhotoProfile}>Cambiar Foto de Perfil</button>
                         </div>)
@@ -44,11 +52,11 @@ export const ShowUser:FC<IShowUser> = ({user}) => {
                     
 
                     <div className={styles.photoContainer}>
-                        <img src={user.linkProfileImg ? user.linkProfileImg : "/account_circle.svg"} alt="" />
-                        <h3>{user.username}</h3>
+                        <img src={userShowed.linkProfileImg ? userShowed.linkProfileImg : "/account_circle.svg"} alt="" />
+                        <h3>{userShowed.username}</h3>
                     </div>
                     <div className={styles.extraData}>
-                        <p>Imagenes publicadas: {user.cantImagesPublished}</p>
+                        <p>Imagenes publicadas: {userShowed.cantImagesPublished}</p>
                         <p>Registrado el: {formattedDate}</p>
                     </div>
 

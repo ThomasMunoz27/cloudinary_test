@@ -32,20 +32,25 @@ export const Pagination:FC<IPagination> = ({whereFrom}) => {
         if(whereFrom === "Main"){
             await fetchImagesStore(actualPage, 2, activeCategory?.id)
             setImagesToUse(images)
+            console.log("a")
         }else{
             if(activeUser){
                 await fetchImagesUserStore(activeUser.id, actualPage, 6)
                 setImagesToUse(imagesUser)
+                            console.log("b")
+
             }else{
                 await fetchImagesUserStore(loguedUser!.id, actualPage, 6)
                 setImagesToUse(imagesUser)
+                            console.log("c")
+
             }
         }
     }
 
     useEffect(()=> {
         getPagedImages()
-    }, [actualPage, activeUser, imagesToUse])
+    }, [actualPage, activeUser])
   return (
     <>
         <div className={styles.pagination}>

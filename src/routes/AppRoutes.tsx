@@ -10,7 +10,9 @@ export const AppRoutes = () => {
         <Route path="/" element={<MainScreen></MainScreen>} />
         <Route path="/image" element={<ImageScreen/>} />
         <Route path="/categories" element={<ListCategories/>}></Route>
-        <Route path="/user/profile" element={<UserScreen></UserScreen>}></Route>
+        <Route path="/user/profile" element={<UserScreen isOwnProfile={true}></UserScreen>}></Route>
+        <Route path="/profile/:id" element={<UserScreen isOwnProfile={false}></UserScreen>}></Route>
+
     </Routes>
   )
 }

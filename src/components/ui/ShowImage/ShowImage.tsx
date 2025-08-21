@@ -5,10 +5,14 @@ import { IReactionType } from "../../../types/Enums/IReactionType"
 import styles from "./ShowImage.module.css"
 import { IReactionDTOResponse } from "../../../types/IReactionDTOResponse"
 import { swalError } from "../../../utils/swalError"
+import { useStoreUser } from "../../../store/useStoreUser"
+import { useNavigate } from "react-router"
 
 export const ShowImage = () => {
 
     const {image, setImage} = useStoreImages()
+    const {setActiveUser} = useStoreUser()
+    const navigate = useNavigate()
 
     const [likes, setLikes] = useState(0)
     const [dislikes, setDislikes] = useState(0)
@@ -65,6 +69,11 @@ export const ShowImage = () => {
         }
     }
 
+    const handleNavigateUser = () => {
+        setActiveUser(image!.userId.id)
+        navigate(`/profile/${image!.userId.id}`)
+    }
+
     useEffect(() => {
         console.log("lol")
         if (!image) return;
@@ -109,7 +118,7 @@ export const ShowImage = () => {
                     <p>{image?.description}</p>
                 </div>
                 <div className={styles.authorSeccion}>
-                    <p>Imagen subida por: {image?.userId.username}</p>
+                    <p>Imagen subida por: <span className={styles.userName} onClick={handleNavigateUser}>{image?.userId.username}</span></p>
                 </div>
             </div>
         </div>

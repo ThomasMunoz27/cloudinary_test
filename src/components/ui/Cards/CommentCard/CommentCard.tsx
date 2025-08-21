@@ -21,7 +21,7 @@ export const CommentCard:FC<ICommentCard> = ({comment}) => {
 
     const handleClickUserComment = async () => {
         await setActiveUser(comment.userId)
-        navigate("/user/profile")
+        navigate(`/profile/${comment.userId}`)
     }
   return (
     
