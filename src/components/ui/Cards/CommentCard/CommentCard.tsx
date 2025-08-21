@@ -3,15 +3,20 @@ import { ICommentDTOResponse } from '../../../../types/ICommentDTOResponse'
 import styles from './CommentCard.module.css'
 import { useStoreUser } from '../../../../store/useStoreUser'
 import { useNavigate } from 'react-router'
+import { deleteUserComment } from '../../../../cruds/crudComments'
+import { swalError } from '../../../../utils/swalError'
+import { swalSucces } from '../../../../utils/swalSucces'
 
 interface ICommentCard{
     comment: ICommentDTOResponse
+    comments: ICommentDTOResponse[]
+    setComments: React.Dispatch<React.SetStateAction<ICommentDTOResponse[]>>
 }
 
-export const CommentCard:FC<ICommentCard> = ({comment}) => {
+export const CommentCard:FC<ICommentCard> = ({comment, comments, setComments}) => {
 
     const navigate = useNavigate()
-    const {setActiveUser} = useStoreUser()
+    const {setActiveUser, loguedUser} = useStoreUser()
 
     const formattedDate = new Date(comment.createdAt).toLocaleString('es-AR', {
 		day: '2-digit',
@@ -22,6 +27,19 @@ export const CommentCard:FC<ICommentCard> = ({comment}) => {
     const handleClickUserComment = async () => {
         await setActiveUser(comment.userId)
         navigate(`/profile/${comment.userId}`)
+    }
+
+    const handleDeleteComment = async () => {
+        try{
+            await deleteUserComment(comment.id)
+            swalSucces("Comentario borrado")
+
+            // 🔥 Actualizamos el estado sin recargar la página
+			setComments(comments.filter((c) => c.id !== comment.id))
+        }catch (err){
+            swalError("Error al Borrar comentario", "No se pudo borrar el comentario")
+        }
+
     }
   return (
     
@@ -35,6 +53,10 @@ export const CommentCard:FC<ICommentCard> = ({comment}) => {
                 <span className={styles.dateComment}>Comentado el: {formattedDate}</span>
                 <p>{comment.content}</p>
             </div>
+            {loguedUser && loguedUser.id == comment.userId
+            && (
+                <button className={styles.deleteButton} onClick={handleDeleteComment}>Borrar</button>
+            )}
         </div>
     </>
   )

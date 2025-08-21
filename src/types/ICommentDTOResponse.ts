@@ -1,7 +1,7 @@
 
 
 export interface ICommentDTOResponse{
-    id?: number
+    id: number
     content: string,
     userId: number
     username: string,

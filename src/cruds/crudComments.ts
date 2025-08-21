@@ -10,3 +10,8 @@ export const postCommentInImage = async (commentRequest: ICommentPostRequest) =>
     const response = await interceptorApiClient.post("comments/post", commentRequest)
     return response.data
 }
+
+export const deleteUserComment = async (commentId: number) => {
+    const response = await interceptorApiClient.delete(`comments/delete/${commentId}`)
+    return response.data
+}

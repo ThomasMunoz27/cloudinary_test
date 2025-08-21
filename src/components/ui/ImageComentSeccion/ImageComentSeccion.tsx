@@ -71,7 +71,7 @@ export const ImageComentSeccion = () => {
         
         <div className={styles.commentSeccion}>
             {comments.map(comment => 
-                (<CommentCard key={comment.id} comment={comment}></CommentCard>)
+                (<CommentCard key={comment.id} comment={comment} comments={comments} setComments={setComments}></CommentCard>)
                 )}
         </div>
     </>
