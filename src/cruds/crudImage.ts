@@ -39,3 +39,7 @@ export const getAllImagesPaged = async (page: number, size: number, categoryId?:
     }
 }
 
+export const getImagesStatsByUser = async (userId:number) => {
+    const response = await interceptorApiClient.get(`/images/user/${userId}/stats`)
+    return response.data
+}

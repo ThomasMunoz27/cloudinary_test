@@ -8,6 +8,7 @@ import { useStoreImages } from '../../../store/useStoreImages'
 import { useStoreModal } from '../../../store/useStoreModal'
 import { ModalChangePhotoProfile } from '../modals/ModalChangePhotoProfile/ModalChangePhotoProfile'
 import { useStoreUser } from '../../../store/useStoreUser'
+import { UserStats } from '../UserStats/UserStats'
 
 
 interface IShowUser {
@@ -73,7 +74,9 @@ export const ShowUser:FC<IShowUser> = ({user, otherUserId}) => {
                         <Pagination whereFrom='ownUser'></Pagination>
                     )}
                 </div>
+                <UserStats userId={userShowed.id}></UserStats>
             </div>
+
             
             {modalChangePhotoProfile && <div className={styles.modalBackdrop}> <ModalChangePhotoProfile></ModalChangePhotoProfile></div>}
 
