@@ -10,6 +10,11 @@ export const getAllUsers = async ():Promise<IUser[]> => {
     return response.data
 }
 
+export const getAllUsersDto = async ():Promise<IUserDTOResponse[]> => {
+    const response = await interceptorApiClient.get("/users/all")
+    return response.data
+}
+
 export const getUserProfileById = async(userId: number):Promise<IUserDTOResponse> => {
     const response = await interceptorApiClient.get(`users/profile/${userId}`)
     return response.data

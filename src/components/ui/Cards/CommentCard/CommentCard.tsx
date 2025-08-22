@@ -46,7 +46,7 @@ export const CommentCard:FC<ICommentCard> = ({comment, comments, setComments}) =
     <>
         <div className={styles.commentContainer}>
             <div className={styles.perfilSide}>
-                <img src="/account_circle.svg" alt="fotoDePerfil" />
+                <img src={comment.linkProfileImg ?? "/account_circle.svg"} alt="fotoDePerfil" />
                 <p className={styles.perfilUsername} onClick={handleClickUserComment}>{comment.username}</p>
             </div>
             <div className={styles.contentSide}>

@@ -27,7 +27,6 @@ export const MainScreen = () => {
     <>
     <div className={styles.pageContainer}>
 
-        <Header></Header>
 
         <ListImages images={images?.content || []}></ListImages>
         <Pagination whereFrom='Main'></Pagination>

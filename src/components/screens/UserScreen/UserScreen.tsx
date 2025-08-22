@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { useStoreUser } from '../../../store/useStoreUser'
-import { Header } from '../../ui/Header/Header'
 import { ShowUser } from '../../ui/ShowUser/ShowUser'
 import styles from './UserScreen.module.css'
 import { useParams } from 'react-router'
@@ -18,7 +17,6 @@ export const UserScreen:FC<IUserScreen> = ({isOwnProfile}) => {
   return (
     <>
         <div className={styles.userScreenContainer}>
-            <Header></Header>
             {isOwnProfile 
             ? (
                 <ShowUser user={loguedUser!} otherUserId={loguedUser?.id}></ShowUser>

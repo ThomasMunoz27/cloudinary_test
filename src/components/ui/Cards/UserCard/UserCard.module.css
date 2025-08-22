@@ -1,0 +1,39 @@
+.userCardContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.contentContainer {
+	width: 100%;
+	max-width: 260px;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 1rem;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contentContainer:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contentContainer img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 0.75rem;
+	border: 2px solid #ddd;
+}
+
+.userName {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #333;
+	text-align: center;
+}

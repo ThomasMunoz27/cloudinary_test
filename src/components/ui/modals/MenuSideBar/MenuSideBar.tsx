@@ -27,6 +27,12 @@ export const MenuSideBar = () => {
         closeModalMenuSideBar()
     }
 
+    const handleClickSearchUser = () => {
+        navigate("/search/users")
+        closeModalMenuSideBar()
+
+    }
+
     const handleClickCategory = () => {
         navigate("/categories")
         closeModalMenuSideBar()
@@ -49,12 +55,19 @@ export const MenuSideBar = () => {
             <div className={styles.optionInMenu} onClick={handleOpenLogin}>
                 <p>Iniciar Sesión</p>
             </div>
+
             <div className={styles.optionInMenu} onClick={handleOpenRegister}>
                 <p>Registrar Usuario</p>
             </div>
+
+            <div className={styles.optionInMenu} onClick={handleClickSearchUser}>
+                <p>Buscar Usuarios</p>
+            </div>
+
             <div className={styles.optionInMenu} onClick={handleClickCategory}>
                 <p>Categorias</p>
             </div>
+
             <div className={styles.optionInMenu} onClick={closeSession}>
                 <p>Cerrar sesión</p>
             </div>

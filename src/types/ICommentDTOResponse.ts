@@ -5,5 +5,6 @@ export interface ICommentDTOResponse{
     content: string,
     userId: number
     username: string,
+    linkProfileImg: string
     createdAt: Date
 }

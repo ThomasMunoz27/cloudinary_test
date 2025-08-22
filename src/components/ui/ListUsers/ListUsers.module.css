@@ -1,0 +1,27 @@
+.searchBarContainer {
+	display: flex;
+	justify-content: center;
+	margin: 1rem 0;
+}
+
+.searchBar {
+	width: 100%;
+	max-width: 500px;
+	padding: 0.75rem 1rem;
+	border: 1px solid #ccc;
+	border-radius: 2rem;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.searchBar:focus {
+	outline: none;
+	border-color: #007bff;
+	box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+.resultsContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 1rem;
+	padding: 1rem;
+}
