@@ -74,3 +74,27 @@
 	text-decoration: underline;
 	cursor: pointer;
 }
+
+.deleteButtonContainer{
+	align-self: flex-start;	
+}
+
+.deleteButton{
+		background-color: #e00000;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	padding: 8px 16px;
+	font-weight: bold;
+	font-size: 1rem;
+	cursor: pointer;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	
+}
+
+.deleteButton:hover{
+	background-color: #ca1e00;
+
+	transform: translateY(-1px);
+}

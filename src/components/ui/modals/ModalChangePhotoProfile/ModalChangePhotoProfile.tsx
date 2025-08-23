@@ -4,10 +4,12 @@ import styles from './ModalChangePhotoProfile.module.css'
 import { useStoreModal } from '../../../../store/useStoreModal';
 import { putPhotoProfileImage } from '../../../../cruds/crudUser';
 import { swalSucces } from '../../../../utils/swalSucces';
+import { useStoreUser } from '../../../../store/useStoreUser';
 
 export const ModalChangePhotoProfile = () => {
 
     const {closeModalChangePhotoProfile} = useStoreModal()
+    const {setLoguedUser} = useStoreUser()
 
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
     const [preview, setPreview] = useState<string | null>(null)
@@ -79,7 +81,8 @@ export const ModalChangePhotoProfile = () => {
             swalError("Error al subir la imagen")
         }finally{
             setIsSubmitting(false)
-
+            handleCloseModal()
+            setLoguedUser()
         }
     }
 

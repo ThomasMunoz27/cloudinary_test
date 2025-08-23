@@ -7,11 +7,12 @@ import { IReactionDTOResponse } from "../../../types/IReactionDTOResponse"
 import { swalError } from "../../../utils/swalError"
 import { useStoreUser } from "../../../store/useStoreUser"
 import { useNavigate } from "react-router"
+import { deleteImageById } from "../../../cruds/crudImage"
 
 export const ShowImage = () => {
 
     const {image, setImage} = useStoreImages()
-    const {setActiveUser} = useStoreUser()
+    const {setActiveUser, loguedUser} = useStoreUser()
     const navigate = useNavigate()
 
     const [likes, setLikes] = useState(0)
@@ -74,6 +75,11 @@ export const ShowImage = () => {
         navigate(`/profile/${image!.userId.id}`)
     }
 
+    const handleDeleteImage = async () => {
+        await deleteImageById(image!.id)
+        navigate("/")
+    }
+
     useEffect(() => {
         console.log("lol")
         if (!image) return;
@@ -119,6 +125,13 @@ export const ShowImage = () => {
                 </div>
                 <div className={styles.authorSeccion}>
                     <p>Imagen subida por: <span className={styles.userName} onClick={handleNavigateUser}>{image?.userId.username}</span></p>
+                </div>
+                <div className={styles.deleteButtonContainer}>
+                    {loguedUser && loguedUser.id == image?.userId.id && 
+                    (
+                        <button onClick={handleDeleteImage} className={styles.deleteButton} >Borrar Imagen</button>
+                    )}
+
                 </div>
             </div>
         </div>

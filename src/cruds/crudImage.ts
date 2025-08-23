@@ -12,6 +12,11 @@ export const getImageById = async (idImage: number): Promise<IImage> => {
     return response.data
 }
 
+export const deleteImageById = async (idImage: number) =>{
+    const response = await interceptorApiClient.delete(`/images/${idImage}`)
+    return response.data
+}
+
 export const postImageCloudinary = async (formData: FormData) => {
     const response = await interceptorApiClient.post(`/images/upload`, formData,  {
         headers:{

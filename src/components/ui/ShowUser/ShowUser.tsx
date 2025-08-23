@@ -34,9 +34,8 @@ export const ShowUser:FC<IShowUser> = ({user, otherUserId}) => {
     useEffect(() => {
         if(otherUserId){
             setActiveUser(otherUserId)
-            
         }
-    },[otherUserId])
+    },[otherUserId, loguedUser])
 
   return (
     <>
