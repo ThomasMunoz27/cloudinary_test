@@ -25,6 +25,7 @@ export const ShowUser:FC<IShowUser> = ({user, otherUserId}) => {
 
     const userShowed = activeUser ?? user
 
+    //Formatear fecha para ser usada
     const formattedDate = new Date(userShowed.registerDate).toLocaleString('es-AR', {
 		day: '2-digit',
 		month: '2-digit',

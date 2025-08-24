@@ -22,7 +22,7 @@ export const ShowImage = () => {
 
     const [userReaction, setUserReaction] = useState<IReactionType | null>(null)
 
-
+    //Manejador de Like
     const handleLike = async () => {
         
         const idImage = image?.id
@@ -50,7 +50,7 @@ export const ShowImage = () => {
             }
         }
     }
-
+    //Manejador de Dislike
     const handleDislike = async () => {
         
         const idImage = image?.id
@@ -70,6 +70,7 @@ export const ShowImage = () => {
         }
     }
 
+    //Navegar a perful de usuario clickeado
     const handleNavigateUser = () => {
         setActiveUser(image!.userId.id)
         navigate(`/profile/${image!.userId.id}`)
