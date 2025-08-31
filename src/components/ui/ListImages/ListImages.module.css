@@ -1,6 +1,6 @@
 .listImages {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	grid-template-columns: repeat(4, minmax(220px, 1fr));
 	gap: 24px;
 	padding: 24px;
 	background-color: none;
@@ -16,6 +16,10 @@
 	color: #333;
 }
 
+.noImages{
+	text-align: center;
+
+}
 .categoryDescription{
 	text-align: center;
 	padding: 8px;
@@ -25,5 +29,12 @@
 	.listImages {
 		padding: 16px;
 		gap: 16px;
+	}
+}
+
+@media (max-width: 1200px){
+	.listImages{
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
 	}
 }

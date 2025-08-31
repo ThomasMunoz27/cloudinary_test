@@ -1,3 +1,4 @@
+import { IPrivileges } from "./Enums/IPrivileges"
 
 export interface IUserDTOResponse{
     id: number,
@@ -6,4 +7,5 @@ export interface IUserDTOResponse{
     publicIdProfileImg: string,
     linkProfileImg: string
     cantImagesPublished: number
+    privileges: IPrivileges
 }

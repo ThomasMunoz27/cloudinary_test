@@ -1,4 +1,4 @@
 export enum IPrivileges{
-    ADMIN,
-    USER
+    USER = "USER",
+	ADMIN = "ADMIN"
 }

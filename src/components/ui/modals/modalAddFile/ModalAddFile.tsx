@@ -107,7 +107,7 @@ export const ModalAddFile = () => {
       swalError("Error al subir la imagen")
     }finally{
       setIsSubmitting(false)
-      fetchImagesStore(0, 2)
+      fetchImagesStore(0, 8)
       closeModalAddFile()
       
     }

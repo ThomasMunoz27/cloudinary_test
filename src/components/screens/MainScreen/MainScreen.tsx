@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { Header } from '../../ui/Header/Header'
 import { ListImages } from '../../ui/ListImages/ListImages'
 import styles from "./MainScreen.module.css"
 import { useStoreImages } from '../../../store/useStoreImages'
@@ -14,7 +13,7 @@ export const MainScreen = () => {
       const {activeCategory} = useStoreListCategories()
 
       const triggerFetchImages = async () =>{
-        await fetchImagesStore(0, 2, activeCategory?.id)
+        await fetchImagesStore(0, 8, activeCategory?.id)
         console.log("Buscando imagenes")
       }
     //fetch images proovisional

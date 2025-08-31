@@ -32,7 +32,7 @@ export const ListImages:FC<IListImages> = ({images}) => {
                 <ImageCard key={image.id} image={image}></ImageCard>
             ))
           ) : (
-            <p>No hay imagenes</p>
+            <h3 className={styles.noImages}>No hay imagenes</h3>
           )}
             
         </div>

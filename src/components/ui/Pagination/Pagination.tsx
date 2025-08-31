@@ -30,11 +30,11 @@ export const Pagination:FC<IPagination> = ({whereFrom}) => {
 
     const getPagedImages = async () => {
         if(whereFrom === "Main"){
-        const data = await fetchImagesStore(actualPage, 2, activeCategory?.id)
+        const data = await fetchImagesStore(actualPage, 8, activeCategory?.id)
         setImagesToUse(data)
     } else {
         const userId = activeUser ? activeUser.id : loguedUser!.id
-        const data = await fetchImagesUserStore(userId, actualPage, 6)
+        const data = await fetchImagesUserStore(userId, actualPage, 8)
         setImagesToUse(data)
     }
     }
@@ -49,7 +49,7 @@ export const Pagination:FC<IPagination> = ({whereFrom}) => {
   return (
     <>
         <div className={styles.pagination}>
-            <button disabled={actualPage===0} className={styles.paginationButton} onClick={()=> setActualPage(actualPage - 1)}><img src="/chevron_left.svg" alt="" /></button>
+            <button disabled={actualPage===0 || imagesToUse.totalPages===0} className={styles.paginationButton} onClick={()=> setActualPage(actualPage - 1)}><img src="/chevron_left.svg" alt="" /></button>
 
             {Array.from({length: imagesToUse.totalPages}, (_,i) => i)
                 .filter((page) =>
@@ -77,7 +77,7 @@ export const Pagination:FC<IPagination> = ({whereFrom}) => {
                 )
             }
             
-            <button disabled={actualPage+1===imagesToUse.totalPages} className={styles.paginationButton} onClick={()=> setActualPage(actualPage + 1)}><img src="/chevron_right.svg" alt="" />
+            <button disabled={actualPage+1===imagesToUse.totalPages || imagesToUse.totalPages===0} className={styles.paginationButton} onClick={()=> setActualPage(actualPage + 1)}><img src="/chevron_right.svg" alt="" />
             </button>
         </div>
     </>

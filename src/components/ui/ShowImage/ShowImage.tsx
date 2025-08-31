@@ -8,6 +8,7 @@ import { swalError } from "../../../utils/swalError"
 import { useStoreUser } from "../../../store/useStoreUser"
 import { useNavigate } from "react-router"
 import { deleteImageById } from "../../../cruds/crudImage"
+import { IPrivileges } from "../../../types/Enums/IPrivileges"
 
 export const ShowImage = () => {
 
@@ -82,7 +83,6 @@ export const ShowImage = () => {
     }
 
     useEffect(() => {
-        console.log("lol")
         if (!image) return;
 
         const fetchInitialData = async () => {
@@ -91,7 +91,7 @@ export const ShowImage = () => {
 
             
         };
-
+        console.log(loguedUser)
         fetchInitialData();
     }, [image])
 
@@ -99,10 +99,9 @@ export const ShowImage = () => {
     <>
 
         <div className={styles.principalContainer}>
-            <h2 className={styles.title}>Vista de la imagen</h2>
 
             <div className={styles.imageWrapper}>
-                <h3>{image?.name}</h3>
+                <h3 className={styles.title}>{image?.name}</h3>
                 <img className={styles.showedImage} src={image?.link} alt={image?.name} />
                 <div className={styles.reactionsContainer}>
                     
@@ -128,7 +127,7 @@ export const ShowImage = () => {
                     <p>Imagen subida por: <span className={styles.userName} onClick={handleNavigateUser}>{image?.userId.username}</span></p>
                 </div>
                 <div className={styles.deleteButtonContainer}>
-                    {loguedUser && loguedUser.id == image?.userId.id && 
+                    {loguedUser && (loguedUser.id == image?.userId.id || loguedUser.privileges == IPrivileges.ADMIN) && 
                     (
                         <button onClick={handleDeleteImage} className={styles.deleteButton} >Borrar Imagen</button>
                     )}

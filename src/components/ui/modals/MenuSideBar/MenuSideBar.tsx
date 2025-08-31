@@ -8,6 +8,8 @@ import { useStoreUser } from '../../../../store/useStoreUser'
 
 export const MenuSideBar = () => {
 
+    const {loguedUser} = useStoreUser()
+
     const [visible, setVisible] = useState(false)
 
     const navigate = useNavigate()
@@ -68,9 +70,11 @@ export const MenuSideBar = () => {
                 <p>Categorias</p>
             </div>
 
-            <div className={styles.optionInMenu} onClick={closeSession}>
-                <p>Cerrar sesión</p>
-            </div>
+            {loguedUser && (
+                <div className={styles.optionInMenu} onClick={closeSession}>
+                    <p>Cerrar sesión</p>
+                </div>
+            )}
         </div>
     </>
   )

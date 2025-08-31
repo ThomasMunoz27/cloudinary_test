@@ -45,7 +45,7 @@ export const ShowUser:FC<IShowUser> = ({user, otherUserId}) => {
             <div className={styles.userPresentation}>
                 <div className={styles.profileHeader}>
                     
-                    {loguedUser!.id === userShowed.id && (
+                    {loguedUser && loguedUser.id === userShowed.id && (
                         <div className={styles.changeProfilePhotoContainer}>
                             <button className={styles.addImageButton} onClick={openModalChangePhotoProfile}>Cambiar Foto de Perfil</button>
                         </div>)
@@ -65,7 +65,7 @@ export const ShowUser:FC<IShowUser> = ({user, otherUserId}) => {
                 <div className={styles.userImages}>
 
                     <ListImages images={imagesUser?.content || []}></ListImages>
-                    {loguedUser!.id === userShowed.id
+                    {loguedUser && loguedUser.id === userShowed.id
                     ? (
                         <Pagination whereFrom='user'></Pagination>
 
