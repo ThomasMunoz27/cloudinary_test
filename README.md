@@ -1,50 +1,71 @@
-# React + TypeScript + Vite
+# 🌐 Cloudinary Test - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este es el **Frontend** del proyecto **Cloudinary Test**, una aplicación web desarrollada con **React + Vite** que permite a los usuarios registrarse, iniciar sesión y gestionar imágenes en la nube a través de **Cloudinary**.  
 
-Currently, two official plugins are available:
+El frontend se comunica con el **Backend (Spring Boot)** mediante peticiones HTTP usando **Axios**, con un **Interceptor** configurado para manejar la autenticación con **JWT**.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologías utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- ⚛️ **React** con **Vite** como bundler
+- 📡 **Axios** para peticiones HTTP
+- 🔑 **Axios Interceptor** para manejar el token JWT automáticamente
+- 🎨 **CSS Modules** para estilos encapsulados
+- 🎉 **SweetAlert2** para notificaciones y alertas modernas
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## ⚙️ Requisitos previos
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Antes de ejecutar este proyecto, necesitas tener instalado:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- [Node.js](https://nodejs.org/) (versión 16 o superior recomendada)
+- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
+- Tener corriendo el **Backend del proyecto** 👉 [Repositorio Backend](https://github.com/ThomasMunoz27/cloudinary_test_backend)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+## 📦 Instalación
+
+Clona el repositorio:
+
+
+git clone https://github.com/ThomasMunoz27/cloudinary_test.git
+cd cloudinary_test
+
+Instala las dependencias:
+npm install
+# o
+yarn install
+Esto levantará la aplicación en:
+👉 http://localhost:5173
+
+🔗 Conexión con el Backend
+
+Este frontend depende del backend para funcionar correctamente.
+El backend debe estar levantado en el puerto correspondiente (por defecto http://localhost:8080).
+
+Si necesitas cambiar la URL base de la API, revisa el archivo donde está configurado axios
+
+📸 Funcionalidades principales
+
+🔐 Autenticación con JWT (Registro / Login)
+
+🖼️ Subir imágenes a Cloudinary desde el frontend
+
+📂 CRUD de imágenes (crear, ver, borrar)
+
+🏷️ Manejo de categorías y usuarios
+
+📱 Interfaz responsive y amigable
+
+⚡ Alertas dinámicas con SweetAlert2
+
+## 🧑‍💻 Autor
+
+👤 Thomas Muñoz
+
+## 📜 Licencia
+
+Este proyecto es de uso libre con fines educativos y demostrativos. 🚀
